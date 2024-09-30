@@ -1,4 +1,6 @@
-﻿using System.Data;
+﻿using System.ComponentModel;
+using System.Data;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,17 +17,19 @@ namespace DemoWPFTutorial
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window , INotifyPropertyChanged
     {
-        private DataTable largeDataTable;
-        private int currentPage = 1;
-        private const int pageSize = 100;
+        //private DataTable largeDataTable;
+        //private int currentPage = 1;
+        //private const int pageSize = 100;
 
         public MainWindow()
         {
+            DataContext = this;
+
             InitializeComponent();
-            LoadLargeDataTable();
-            LoadPage(currentPage);
+            //LoadLargeDataTable();
+            //LoadPage(currentPage);
 
             //Binding binding = new Binding("Text");
             //binding.Source = txtValue;
@@ -42,63 +46,86 @@ namespace DemoWPFTutorial
         //    }
         //}
 
-        // Generate a large DataTable with 400 columns and 600 rows
-        private void LoadLargeDataTable()
+        //// Generate a large DataTable with 400 columns and 600 rows
+        //private void LoadLargeDataTable()
+        //{
+        //    largeDataTable = new DataTable();
+
+        //    // Add 400 columns
+        //    for (int col = 1; col <= 400; col++)
+        //    {
+        //        largeDataTable.Columns.Add($"Column {col}", typeof(string));
+        //    }
+
+        //    // Add 600 rows of sample data
+        //    for (int row = 1; row <= 600; row++)
+        //    {
+        //        DataRow dataRow = largeDataTable.NewRow();
+        //        for (int col = 1; col <= 400; col++)
+        //        {
+        //            dataRow[$"Column {col}"] = $"Data R{row}C{col}";
+        //        }
+        //        largeDataTable.Rows.Add(dataRow);
+        //    }
+        //}
+
+        //// Load a specific page of data into the DataGrid
+        //private void LoadPage(int pageNumber)
+        //{
+        //    int startRow = (pageNumber - 1) * pageSize;
+        //    int endRow = Math.Min(startRow + pageSize, largeDataTable.Rows.Count);
+
+        //    DataTable pageTable = largeDataTable.Clone(); // Create schema copy
+        //    for (int i = startRow; i < endRow; i++)
+        //    {
+        //        pageTable.ImportRow(largeDataTable.Rows[i]);
+        //    }
+
+        //    dataGrid.ItemsSource = pageTable.DefaultView;
+        //    pageNumberText.Text = pageNumber.ToString();
+        //}
+
+        //// Event handler for the Next button
+        //private void NextPage_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (currentPage * pageSize < largeDataTable.Rows.Count)
+        //    {
+        //        currentPage++;
+        //        LoadPage(currentPage);
+        //    }
+        //}
+
+        //// Event handler for the Previous button
+        //private void PreviousPage_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (currentPage > 1)
+        //    {
+        //        currentPage--;
+        //        LoadPage(currentPage);
+        //    }
+        //}
+
+        private string boundText;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public string BoundText
         {
-            largeDataTable = new DataTable();
-
-            // Add 400 columns
-            for (int col = 1; col <= 400; col++)
-            {
-                largeDataTable.Columns.Add($"Column {col}", typeof(string));
-            }
-
-            // Add 600 rows of sample data
-            for (int row = 1; row <= 600; row++)
-            {
-                DataRow dataRow = largeDataTable.NewRow();
-                for (int col = 1; col <= 400; col++)
-                {
-                    dataRow[$"Column {col}"] = $"Data R{row}C{col}";
-                }
-                largeDataTable.Rows.Add(dataRow);
+            get { return boundText; }
+            set { 
+                boundText = value;
+                OnPropertyOnChanged();
             }
         }
 
-        // Load a specific page of data into the DataGrid
-        private void LoadPage(int pageNumber)
+        private void btnSet_Click(object sender, RoutedEventArgs e)
         {
-            int startRow = (pageNumber - 1) * pageSize;
-            int endRow = Math.Min(startRow + pageSize, largeDataTable.Rows.Count);
-
-            DataTable pageTable = largeDataTable.Clone(); // Create schema copy
-            for (int i = startRow; i < endRow; i++)
-            {
-                pageTable.ImportRow(largeDataTable.Rows[i]);
-            }
-
-            dataGrid.ItemsSource = pageTable.DefaultView;
-            pageNumberText.Text = pageNumber.ToString();
+            BoundText = "Set from Code";
         }
 
-        // Event handler for the Next button
-        private void NextPage_Click(object sender, RoutedEventArgs e)
+        private void OnPropertyOnChanged([CallerMemberName] string propertyName = null)
         {
-            if (currentPage * pageSize < largeDataTable.Rows.Count)
-            {
-                currentPage++;
-                LoadPage(currentPage);
-            }
-        }
-
-        // Event handler for the Previous button
-        private void PreviousPage_Click(object sender, RoutedEventArgs e)
-        {
-            if (currentPage > 1)
-            {
-                currentPage--;
-                LoadPage(currentPage);
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
