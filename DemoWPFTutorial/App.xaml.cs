@@ -12,15 +12,17 @@ namespace DemoWPFTutorial
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             //Create the startup window
-            //MainWindow wnd = new MainWindow();
-            TestDataBindingWindow wnd = new TestDataBindingWindow();
+
+            //Databinding example
+            //TestDataBindingWindow wnd = new TestDataBindingWindow();
+            
+            // Create DataTable using pagination
+             DataTableExampleWindow wnd = new DataTableExampleWindow();
+
             // Do stuff here, e.g. to the window
-            wnd.Title = "Demo WPF :)";
+            wnd.Title = "Demo WPF Tutorial";
             // Show the window
             wnd.Show();
-
-            //TestPage testPage = new TestPage();
-            //testPage.ShowsNavigationUI = true;
         }
     }
 
