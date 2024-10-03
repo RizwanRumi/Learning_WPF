@@ -9,7 +9,19 @@ namespace MVVMTutorial.ViewModel
         public ObservableCollection<Item> Items { get; set; }
         public MainWindowViewModel() 
         {
-
+            Items = new ObservableCollection<Item>();
+            Items.Add(new Item
+            {
+                Name = "Product1",
+                SerialNumber = "0001",
+                Quantity = 5
+            });
+            Items.Add(new Item
+            {
+                Name = "Product2",
+                SerialNumber = "0002",
+                Quantity = 10
+            });
         }
 
         private Item selectedItem;
