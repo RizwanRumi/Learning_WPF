@@ -7,13 +7,17 @@
         mc:Ignorable="d"
         Title="ToleranceWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <!-- Tolerance Data DataGrid -->
-        <DataGrid x:Name="ToleranceDataGrid" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False"
+        <DataGrid x:Name="ToleranceDataGrid" Grid.Row="0" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False"
                   ItemsSource="{Binding ToleranceDataList}" SelectionMode="Extended" SelectionUnit="FullRow">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Binding="{Binding IsSelected}" Header="Select" Width="50"/>
@@ -29,7 +33,7 @@
         </DataGrid>
 
         <!-- Merit Function Data DataGrid -->
-        <DataGrid x:Name="MeritFunctionDataGrid" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False"
+        <DataGrid x:Name="MeritFunctionDataGrid" Grid.Row="0" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False"
                   ItemsSource="{Binding MeritFunctionDataList}" SelectionMode="Extended" SelectionUnit="FullRow">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Binding="{Binding Show}" Header="Show" Width="50"/>
@@ -44,5 +48,9 @@
                 <DataGridTextColumn Binding="{Binding Weight}" Header="Weight" Width="80"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="AddButton" Content="Add" Height="50" Width="100" Click="AddButton_Click" />
+        </StackPanel>    
     </Grid>
 </Window>
