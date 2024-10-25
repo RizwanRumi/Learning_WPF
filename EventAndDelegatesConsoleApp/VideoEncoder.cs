@@ -23,7 +23,10 @@ namespace EventAndDelegatesConsoleApp
          */
 
         //public delegate void VideoEncodedEventHandler(object sender, VideoEventArgs args);
-        
+        //public event VideoEncodedEventHandler? VideoEncoded;
+
+        // OR
+
         public event EventHandler<VideoEventArgs>? VideoEncoded;
 
         public void Encode(Video video) 
