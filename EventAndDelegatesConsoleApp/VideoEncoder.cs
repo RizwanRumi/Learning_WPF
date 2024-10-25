@@ -9,7 +9,7 @@ namespace EventAndDelegatesConsoleApp
 
     public class VideoEventArgs : EventArgs
     {
-        public Video Video { get; set; }        
+        public required Video Video { get; set; }        
     }
 
     public class VideoEncoder
@@ -24,7 +24,7 @@ namespace EventAndDelegatesConsoleApp
 
         //public delegate void VideoEncodedEventHandler(object sender, VideoEventArgs args);
         
-        public event EventHandler<VideoEventArgs> VideoEncoded;
+        public event EventHandler<VideoEventArgs>? VideoEncoded;
 
         public void Encode(Video video) 
         {
@@ -35,8 +35,7 @@ namespace EventAndDelegatesConsoleApp
 
         protected virtual void OnVideoEncoded(Video video)
         {
-            if (VideoEncoded != null) 
-                VideoEncoded(this, new VideoEventArgs() { Video = video });
+            VideoEncoded?.Invoke(this, new VideoEventArgs() { Video = video });
         }
     }
 }

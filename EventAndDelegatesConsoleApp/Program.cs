@@ -9,9 +9,12 @@ internal class Program
         var mailService = new MailService(); //   subscriber
         var messageService = new MessageService(); // subscriber
 
-        videoEncoder.VideoEncoded += mailService.OnVideoEncoded; 
-        videoEncoder.VideoEncoded += messageService.OnVideoEncoded; 
+        videoEncoder.VideoEncoded += mailService.OnVideoEncoded;
+        videoEncoder.VideoEncoded += messageService.OnVideoEncoded;
 
         videoEncoder.Encode(video);
+
+        videoEncoder.VideoEncoded -= mailService.OnVideoEncoded;
+        videoEncoder.VideoEncoded -= messageService.OnVideoEncoded;
     }
 }
