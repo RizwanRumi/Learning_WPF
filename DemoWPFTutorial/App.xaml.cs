@@ -19,8 +19,11 @@ namespace DemoWPFTutorial
             // Create DataTable using pagination
             // DataTableExampleWindow wnd = new DataTableExampleWindow();
 
-            //tolerance window
-            ToleranceWindow wnd = new ToleranceWindow();
+            ////tolerance window
+            //ToleranceWindow wnd = new ToleranceWindow();
+
+            // Button Window
+            ButtonWindow wnd = new ButtonWindow();
             // Do stuff here, e.g. to the window
             wnd.Title = "Demo WPF Tutorial";
             // Show the window
