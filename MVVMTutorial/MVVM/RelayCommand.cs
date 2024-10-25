@@ -16,7 +16,7 @@ namespace MVVMTutorial.MVVM
 
         public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
-            this.execute = execute;
+            this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
             this.canExecute = canExecute;
         }
 
