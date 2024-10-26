@@ -59,9 +59,9 @@ namespace VTWPF.ViewModels
         {
             // Add sample data to ToleranceDataList
             ToleranceDataList.Add(new ToleranceData { IsSelected = false, Nr = 1, Type = "TWAV", Int1 = 4, Int2 = 0, Int3 = 0, VarMin = "0.546", VarMax = "", Comment = "" });
-            ToleranceDataList.Add(new ToleranceData { IsSelected = true, Nr = 2, Type = "TOFF", Int1 = 4, Int2 = -6, Int3 = 6, VarMin = "Symm.", VarMax = "", Comment = "" });
+            ToleranceDataList.Add(new ToleranceData { IsSelected = false, Nr = 2, Type = "TOFF", Int1 = 4, Int2 = -6, Int3 = 6, VarMin = "Symm.", VarMax = "", Comment = "" });
             ToleranceDataList.Add(new ToleranceData { IsSelected = false, Nr = 3, Type = "TFRN", Int1 = 5, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 3/ Power" });
-            ToleranceDataList.Add(new ToleranceData { IsSelected = true, Nr = 4, Type = "AXSE", Int1 = 7, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 4/ Power" });
+            ToleranceDataList.Add(new ToleranceData { IsSelected = false, Nr = 4, Type = "AXSE", Int1 = 7, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 4/ Power" });
             ToleranceDataList.Add(new ToleranceData { IsSelected = false, Nr = 5, Type = "BEFD", Int1 = 8, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 5/ Power" });
             ToleranceDataList.Add(new ToleranceData { IsSelected = false, Nr = 6, Type = "CHGG", Int1 = 9, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 6/ Power" });
             ToleranceDataList.Add(new ToleranceData { IsSelected = false, Nr = 7, Type = "DFFF", Int1 = 10, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 7/ Power" });
@@ -69,13 +69,13 @@ namespace VTWPF.ViewModels
             // Add additional sample data here...
 
             // Add sample data to MeritFunctionDataList
-            MeritFunctionDataList.Add(new MeritFunctionData { IsSelected = true, Nr = 1, Type = "CONF", Param1 = "1", Param2 = "", Param3 = "", Param4 = "", Param5 = "", Target = "0", Weight = "0" });
+            MeritFunctionDataList.Add(new MeritFunctionData { IsSelected = false, Nr = 1, Type = "CONF", Param1 = "1", Param2 = "", Param3 = "", Param4 = "", Param5 = "", Target = "0", Weight = "0" });
             MeritFunctionDataList.Add(new MeritFunctionData { IsSelected = false, Nr = 2, Type = "BLNK", Param1 = "EFFL", Param2 = "1", Param3 = "1", Param4 = "0", Param5 = "0", Target = "0", Weight = "0" });
-            MeritFunctionDataList.Add(new MeritFunctionData { IsSelected = true, Nr = 3, Type = "ZERN", Param1 = "EFFL", Param2 = "2", Param3 = "2", Param4 = "0", Param5 = "0", Target = "0", Weight = "0" });
-            MeritFunctionDataList.Add(new MeritFunctionData { IsSelected = true, Nr = 4, Type = "TRRR", Param1 = "EFFL", Param2 = "3", Param3 = "1", Param4 = "0", Param5 = "0", Target = "0", Weight = "0" });
+            MeritFunctionDataList.Add(new MeritFunctionData { IsSelected = false, Nr = 3, Type = "ZERN", Param1 = "EFFL", Param2 = "2", Param3 = "2", Param4 = "0", Param5 = "0", Target = "0", Weight = "0" });
+            MeritFunctionDataList.Add(new MeritFunctionData { IsSelected = false, Nr = 4, Type = "TRRR", Param1 = "EFFL", Param2 = "3", Param3 = "1", Param4 = "0", Param5 = "0", Target = "0", Weight = "0" });
             MeritFunctionDataList.Add(new MeritFunctionData { IsSelected = false, Nr = 5, Type = "AAAA", Param1 = "EFFL", Param2 = "4", Param3 = "2", Param4 = "0", Param5 = "0", Target = "0", Weight = "0" });
             MeritFunctionDataList.Add(new MeritFunctionData { IsSelected = false, Nr = 6, Type = "SSSS", Param1 = "EFFL", Param2 = "5", Param3 = "1", Param4 = "0", Param5 = "0", Target = "0", Weight = "0" });
-            MeritFunctionDataList.Add(new MeritFunctionData { IsSelected = true, Nr = 7, Type = "WWWW", Param1 = "EFFL", Param2 = "6", Param3 = "3", Param4 = "0", Param5 = "0", Target = "0", Weight = "0" });
+            MeritFunctionDataList.Add(new MeritFunctionData { IsSelected = false, Nr = 7, Type = "WWWW", Param1 = "EFFL", Param2 = "6", Param3 = "3", Param4 = "0", Param5 = "0", Target = "0", Weight = "0" });
             // Add additional sample data here...
 
         }
@@ -132,7 +132,7 @@ namespace VTWPF.ViewModels
                     }
                 }
 
-                //((RelayCommand)ComputeCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)ComputeCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -161,7 +161,7 @@ namespace VTWPF.ViewModels
                     }
                 }
 
-                //((RelayCommand)ComputeCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)ComputeCommand).RaiseCanExecuteChanged();
             }
         }
 
