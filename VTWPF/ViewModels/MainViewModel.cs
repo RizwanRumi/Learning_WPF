@@ -26,7 +26,7 @@ namespace VTWPF.ViewModels
         public ObservableCollection<ToleranceData> SelectedToleranceDataList { get; set; }
         public ObservableCollection<MeritFunctionData> SelectedMeritFunctionDataList { get; set; }
 
-        public ICommand ComputeCommand { get; set; }
+        public ICommand ComputeCommand { get; }
 
         public MainViewModel()
         {
@@ -43,7 +43,7 @@ namespace VTWPF.ViewModels
             // Subscribe to property changed events for each ToleranceData item
             foreach (var item in ToleranceDataList)
             {
-                item.PropertyChanged += OnToleranceData_PropertyChanged; ;
+                item.PropertyChanged += OnToleranceData_PropertyChanged;
             }
 
             // Subscribe to property changed events for each MeritFunctionData item
@@ -58,14 +58,14 @@ namespace VTWPF.ViewModels
         private void LoadData()
         {
             // Add sample data to ToleranceDataList
-            ToleranceDataList.Add(new ToleranceData { IsSelected = true, Nr = 1, Type = "TWAV", Int1 = 4, Int2 = 0, Int3 = 0, VarMin = "0.546", VarMax = "", Comment = "" });
-            ToleranceDataList.Add(new ToleranceData { IsSelected = false, Nr = 2, Type = "TOFF", Int1 = 4, Int2 = -6, Int3 = 6, VarMin = "Symm.", VarMax = "", Comment = "" });
-            ToleranceDataList.Add(new ToleranceData { IsSelected = true, Nr = 3, Type = "TFRN", Int1 = 5, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 3/ Power" });
+            ToleranceDataList.Add(new ToleranceData { IsSelected = false, Nr = 1, Type = "TWAV", Int1 = 4, Int2 = 0, Int3 = 0, VarMin = "0.546", VarMax = "", Comment = "" });
+            ToleranceDataList.Add(new ToleranceData { IsSelected = true, Nr = 2, Type = "TOFF", Int1 = 4, Int2 = -6, Int3 = 6, VarMin = "Symm.", VarMax = "", Comment = "" });
+            ToleranceDataList.Add(new ToleranceData { IsSelected = false, Nr = 3, Type = "TFRN", Int1 = 5, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 3/ Power" });
             ToleranceDataList.Add(new ToleranceData { IsSelected = true, Nr = 4, Type = "AXSE", Int1 = 7, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 4/ Power" });
-            ToleranceDataList.Add(new ToleranceData { IsSelected = true, Nr = 5, Type = "BEFD", Int1 = 8, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 5/ Power" });
-            ToleranceDataList.Add(new ToleranceData { IsSelected = true, Nr = 6, Type = "CHGG", Int1 = 9, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 6/ Power" });
-            ToleranceDataList.Add(new ToleranceData { IsSelected = true, Nr = 7, Type = "DFFF", Int1 = 10, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 7/ Power" });
-            ToleranceDataList.Add(new ToleranceData { IsSelected = true, Nr = 8, Type = "EEEE", Int1 = 11, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 8/ Power" });
+            ToleranceDataList.Add(new ToleranceData { IsSelected = false, Nr = 5, Type = "BEFD", Int1 = 8, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 5/ Power" });
+            ToleranceDataList.Add(new ToleranceData { IsSelected = false, Nr = 6, Type = "CHGG", Int1 = 9, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 6/ Power" });
+            ToleranceDataList.Add(new ToleranceData { IsSelected = false, Nr = 7, Type = "DFFF", Int1 = 10, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 7/ Power" });
+            ToleranceDataList.Add(new ToleranceData { IsSelected = false, Nr = 8, Type = "EEEE", Int1 = 11, Int2 = -6, Int3 = 6, VarMin = "", VarMax = "", Comment = "Passe 8/ Power" });
             // Add additional sample data here...
 
             // Add sample data to MeritFunctionDataList
@@ -77,27 +77,34 @@ namespace VTWPF.ViewModels
             MeritFunctionDataList.Add(new MeritFunctionData { IsSelected = false, Nr = 6, Type = "SSSS", Param1 = "EFFL", Param2 = "5", Param3 = "1", Param4 = "0", Param5 = "0", Target = "0", Weight = "0" });
             MeritFunctionDataList.Add(new MeritFunctionData { IsSelected = true, Nr = 7, Type = "WWWW", Param1 = "EFFL", Param2 = "6", Param3 = "3", Param4 = "0", Param5 = "0", Target = "0", Weight = "0" });
             // Add additional sample data here...
+
         }
 
+       
         private void SelectAllRowsInitially()
         {
             // Add initially selected items to SelectedToleranceDataList
-            foreach (var item in ToleranceDataList)
-            {
-                if (item.IsSelected)
-                {
-                    SelectedToleranceDataList.Add(item);
-                }
-            }
+            //foreach (var item in ToleranceDataList)
+            //{
+            //    if (item.IsSelected)
+            //    {                    
+            //        SelectedToleranceDataList.Add(item);                    
+            //    }
+            //}
+
+            SelectedToleranceDataList = new ObservableCollection<ToleranceData>(ToleranceDataList.Where(t => t.IsSelected).ToList());
+            var list = ToleranceDataList.Where(t => t.IsSelected);
 
             // Add initially selected items to MeritFunctionDataList
-            foreach (var item in MeritFunctionDataList)
-            {
-                if (item.IsSelected)
-                {
-                    SelectedMeritFunctionDataList.Add(item);
-                }
-            }
+            //foreach (var item in MeritFunctionDataList)
+            //{
+            //    if (item.IsSelected)
+            //    {
+            //        SelectedMeritFunctionDataList.Add(item);
+            //    }
+            //}
+
+            SelectedMeritFunctionDataList = new ObservableCollection<MeritFunctionData>(MeritFunctionDataList.Where(t => t.IsSelected).ToList());
         }
 
         private void OnToleranceData_PropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -124,6 +131,8 @@ namespace VTWPF.ViewModels
                         }
                     }
                 }
+
+                //((RelayCommand)ComputeCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -151,6 +160,8 @@ namespace VTWPF.ViewModels
                         }
                     }
                 }
+
+                //((RelayCommand)ComputeCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -175,7 +186,7 @@ namespace VTWPF.ViewModels
         private bool CanCompute(object parameter)
         {
             // Enable button only if both selected lists contain items
-            return SelectedToleranceDataList.Any() && MeritFunctionDataList.Any(m => m.IsSelected);
+            return SelectedToleranceDataList.Any() && MeritFunctionDataList.Any();
         }
     }
 

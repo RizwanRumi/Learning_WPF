@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using VTWPF.Views;
 
 namespace VTWPF
 {
@@ -14,11 +15,11 @@ namespace VTWPF
             //Create the startup window
 
             //Main windown
-           MainWindow maiWindow = new MainWindow();
+            VarTabWindow varTabWindow = new VarTabWindow();
             // Do stuff here, e.g. to the window
-            maiWindow.Title = "Demo VarTab Tutorial";
+            varTabWindow.Title = "Demo VarTab Tutorial";
             // Show the window
-            maiWindow.Show();
+            varTabWindow.Show();
         }
     }
 
