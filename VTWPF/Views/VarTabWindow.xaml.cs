@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,23 @@ namespace VTWPF.Views
         {
             InitializeComponent();
             DataContext = new MainViewModel();
+        }
+
+        private void SelectCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            SetCheckedForSelected((FrameworkElement)sender, true);
+        }       
+
+        private void SelectCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            SetCheckedForSelected((FrameworkElement)sender, false);
+        }
+
+        private static void SetCheckedForSelected(FrameworkElement sender, bool isChecked)
+        {
+            var dataGrid = (DataGrid)(sender).Tag;
+
+            // code implement.... 
         }
     }
 }

@@ -25,7 +25,18 @@
             <DataGrid x:Name="ToleranceDataGrid" Grid.Row="0" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="False"
       ItemsSource="{Binding ToleranceDataList}" SelectionMode="Extended" SelectionUnit="FullRow">
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn Binding="{Binding IsSelected}" Header="Select" Width="50"/>
+                    <DataGridTemplateColumn Header="Select">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Tag="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                      IsChecked="{Binding Path=Select, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      Checked="SelectCheckBox_Checked"
+                      Unchecked="SelectCheckBox_Unchecked"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridCheckBoxColumn Binding="{Binding IsSelected}" Header="Select 1" Width="50"/>
                     <DataGridTextColumn Binding="{Binding Nr}" Header="Nr" Width="50"/>
                     <DataGridTextColumn Binding="{Binding Type}" Header="Type" Width="80"/>
                     <DataGridTextColumn Binding="{Binding Int1}" Header="Int1" Width="50"/>
@@ -34,7 +45,7 @@
                     <DataGridTextColumn Binding="{Binding VarMin}" Header="Var Min" Width="80"/>
                     <DataGridTextColumn Binding="{Binding VarMax}" Header="Var Max" Width="80"/>
                     <DataGridTextColumn Binding="{Binding Comment}" Header="Comment" Width="150"/>
-                </DataGrid.Columns>
+                </DataGrid.Columns>              
             </DataGrid>
 
             <!-- Merit Function Data DataGrid -->
