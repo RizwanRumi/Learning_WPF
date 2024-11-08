@@ -41,7 +41,14 @@ namespace VTWPF.Views
         {
             var dataGrid = (DataGrid)(sender).Tag;
 
-            // code implement.... 
+            // code implement....
+            foreach (DataRowView item in dataGrid.SelectedItems)
+            {
+                var row = item.Row;
+                if (row.Field<bool>("IsSelectable"))
+                    // column 0 is either "Select" or "Show" depending on DataGrid
+                    row[0] = isChecked;
+            }
         }
     }
 }
